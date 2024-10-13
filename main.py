@@ -13,7 +13,7 @@ def sign(z):    #activation function
     else:
         return -1
 
-class Perceptron(): #perceptron
+class Perceptron():     #perceptron
     def __init__(self):
         self.filename = ''
         self.epoch = 100
@@ -27,7 +27,7 @@ class Perceptron(): #perceptron
         self.test_accuracy = 0.0
     
 
-    def readfile(self): #readfile function
+    def readfile(self):     #readfile function
         # self.filename = input()
         file = open('basic/' + self.filename, "r")
 
@@ -52,7 +52,7 @@ class Perceptron(): #perceptron
             else:
                 i[-1] = 1
 
-        train_data, test_data = train_test_split(self.data, test_size=0.33)
+        train_data, test_data = train_test_split(self.data, test_size=0.33)     #train data and test data 2:1
         self.train_data = np.array(train_data)
         self.test_data = np.array(test_data)
         # print(type(train_data))
@@ -100,13 +100,13 @@ class PlotCanvas(FigureCanvas):     #plot train and test results
     def __init__(self, parent=None, width=12, height=4, dpi=100):
         fig, self.axes= plt.subplots(figsize=(width, height), dpi=dpi)
         FigureCanvas.__init__(self, fig)
-        self.setParent(parent)
+        # self.setParent(parent)
         
     def plot(self, data, weight, title):
         self.axes.clear()
         self.axes.set_title(title)
         colors = []
-        for i in data:
+        for i in data:      #classified by colorize
             if i[-1] == -1:
                 colors.append('r')
             else:
@@ -203,7 +203,7 @@ class MyWidget(QtWidgets.QWidget):
         main_layout.addLayout(top_layout)
         main_layout.addLayout(bottom_layout)
 
-    def resultRender(self, perceptron):
+    def resultRender(self, perceptron):     #show the result
         self.train_canvas.plot(perceptron.train_data, perceptron.fin_weights, "Train data")
         self.test_canvas.plot(perceptron.test_data, perceptron.fin_weights, "Test data")
         self.train_accuracy_result.setText(str(perceptron.train_accuracy))
@@ -213,7 +213,7 @@ class MyWidget(QtWidgets.QWidget):
             weights_string += str(i) + " "
         self.weights_result.setText(weights_string)
 
-    def train_perceptron(self):
+    def train_perceptron(self):     #start training
         print("Start training")
         perceptron = Perceptron()
         perceptron.filename = str(self.file_choosing.currentText())
